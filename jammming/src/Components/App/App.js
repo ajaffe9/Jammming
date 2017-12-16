@@ -8,9 +8,21 @@ class App extends Component {
     this.state = {searchResults: [
       name: this.name,
       artist: this.artist,
-      album: this.album
+      album: this.album,
+      playlistName: '',
+      playlistTracks: [{this.name, this.artist, this.album}]
     ]};
-  }
+    this.addTrack = this.addTrack.bind(this);
+  };
+
+  addTrack(track) {
+    if (track.id === this.state.playlistTracks) {
+      return 'Track is already in Playlist';
+    } else {
+      return [{this.state.playlistTracks} + {this.track}];
+    }
+  };
+
   render() {
     return (
       <div>
@@ -19,7 +31,7 @@ class App extends Component {
           <SearchBar />
           <div className="App-playlist">
             <SearchResults searchResults={this.state.searchResults} />
-            <Playlist />
+            <Playlist playlistName={this.state.playlistName} playlistTracks:{this.state.playlistTracks} />
           </div>
         </div>
       </div>
