@@ -13,14 +13,38 @@ class App extends Component {
       playlistTracks: [{this.name, this.artist, this.album}]
     ]};
     this.addTrack = this.addTrack.bind(this);
+    this.removeTrack = this.removeTrack.bind(this);
+    this.updatePlaylistName = this.updatePlaylistName.bind(this);
+    this.savePlaylist = this.savePlaylist.bind(this);
+    this.search = this.search.bind(this);
   };
 
   addTrack(track) {
-    if (track.id === this.state.playlistTracks) {
+    if ({this.state.playlistTracks}.includes(track.id)) {
       return 'Track is already in Playlist';
     } else {
-      return [{this.state.playlistTracks} + {this.track}];
+      return [{this.state.playlistTracks}].push(this.track);
     }
+  };
+
+  removeTrack(track) {
+    if ({this.state.playlistTracks}.includes(track.id)) {
+      return {this.state.playlistTracks}.slice(this.track);
+    } else {
+      return 'Error'
+    }
+  };
+
+  updatePlaylistName = name => {
+    returns this.state.playlistName;
+  };
+
+  savePlaylist() {
+    return const trackURIs = [this.state.playlistTracks.uri];
+  };
+
+  search(searchTerm) {
+    console.log(searchTerm)
   };
 
   render() {
@@ -28,10 +52,10 @@ class App extends Component {
       <div>
         <h1>Ja<span className="highlight">mmm</span>ing</h1>
         <div className="App">
-          <SearchBar />
+          <SearchBar onSearch={this.state.search}/>
           <div className="App-playlist">
             <SearchResults searchResults={this.state.searchResults} />
-            <Playlist playlistName={this.state.playlistName} playlistTracks:{this.state.playlistTracks} />
+            <Playlist playlistName={this.state.playlistName} playlistTracks:{this.state.playlistTracks} onRemove={this.removeTrack} onNameChange={this.updatePlaylistName} />
           </div>
         </div>
       </div>
