@@ -43,8 +43,8 @@ class App extends Component {
     return const trackURIs = [this.state.playlistTracks.uri];
   };
 
-  search(searchTerm) {
-    console.log(searchTerm)
+  search(term) {
+    console.log(term)
   };
 
   render() {
